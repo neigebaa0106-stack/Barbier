@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barber Noir</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --gray: #f4f4f4;
+  --gold: #f5c542;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* ================= HEADER ================= */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo span {
+  font-size: 2rem;
+  animation: rotate 3s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+}
+
+nav a {
+  margin-left: 2rem;
+  color: var(--white);
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  transition: color .3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width .4s ease;
+}
+
+nav a:hover {
+  color: var(--gold);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ================= HERO ================= */
+.hero {
+  height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+    url("https://images.pexels.com/photos/3993219/pexels-photo-3993219.jpeg")
+    center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+}
+
+.hero-content {
+  color: var(--white);
+  max-width: 900px;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.8rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
+  letter-spacing: 2px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  margin-bottom: 3rem;
+  text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+}
+
+.hero-buttons a {
+  display: inline-block;
+  margin: 0 1rem;
+  padding: 1rem 2.8rem;
+  border: 2px solid var(--white);
+  color: var(--white);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 50px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all .4s ease;
+  z-index: 1;
+}
+
+.hero-buttons a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--gold);
+  transition: width .6s ease, height .6s ease, top .6s ease, left .6s ease;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.hero-buttons a:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.hero-buttons a:hover {
+  color: var(--black);
+  border-color: var(--gold);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(245, 197, 66, 0.4);
+}
+
+/* ================= SECTIONS ================= */
+section {
+  padding: 6rem 3rem;
+  text-align: center;
+  position: relative;
+}
+
+section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+section p {
+  max-width: 800px;
+  margin: auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* ================= SERVICES ================= */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.service {
+  border: 1px solid #ddd;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: .5s ease;
+  background: var(--white);
+  border-radius: 10px;
+}
+
+.service::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(245, 197, 66, 0.3), transparent);
+  transition: left .6s ease;
+}
+
+.service:hover::before {
+  left: 100%;
+}
+
+.service:hover {
+  background: var(--black);
+  color: var(--white);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  border-color: var(--gold);
+}
+
+.service h3 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: .5rem;
+  font-size: 1.3rem;
+}
+
+.price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-top: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.service:hover .price {
+  transform: scale(1.1);
+}
+
+/* ================= GALLERY ================= */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.gallery img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: .5s ease;
+  cursor: pointer;
+  display: block;
+}
+
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(245, 197, 66, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+}
+
+.gallery-item:hover img {
+  filter: grayscale(0%) brightness(1.1);
+  transform: scale(1.08) rotate(1deg);
+}
+
+/* ================= REVIEWS ================= */
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.review {
+  background: var(--gray);
+  padding: 2.5rem;
+  border-radius: 16px;
+  font-style: italic;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.review::before {
+  content: '"';
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 4rem;
+  color: var(--gold);
+  opacity: 0.3;
+  font-family: 'Playfair Display', serif;
+}
+
+.review:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #f4f4f4 0%, #fff 100%);
+}
+
+.stars {
+  color: var(--gold);
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  filter: drop-shadow(0 2px 4px rgba(245, 197, 66, 0.3));
+}
+
+/* ================= MAP ================= */
+.map iframe {
+  width: 100%;
+  height: 350px;
+  border: none;
+  border-radius: 20px;
+  margin-top: 3rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.map iframe:hover {
+  transform: scale(1.01);
+}
+
+/* ================= CONTACT ================= */
+form {
+  max-width: 600px;
+  margin: 3rem auto 0;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(245, 197, 66, 0.2);
+  transform: translateY(-2px);
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  background: var(--black);
+  color: var(--white);
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all .4s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--gold);
+  transition: width .6s ease, height .6s ease, top .6s ease, left .6s ease;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+button:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(245, 197, 66, 0.4);
+}
+
+button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  header {
+    padding: 0 1.5rem;
+  }
+  
+  nav a {
+    margin-left: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  section {
+    padding: 4rem 1.5rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <span>💈</span> BARBER NOIR
+  </div>
+  <nav>
+    <a href="#presentation">Présentation</a>
+    <a href="#services">Forfaits</a>
+    <a href="#galerie">Galerie</a>
+    <a href="#avis">Avis</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>L'Art du Barbier</h1>
+    <p>Style • Précision • Tradition</p>
+    <div class="hero-buttons">
+      <a href="tel:+33123456789">Appeler</a>
+      <a href="https://maps.google.com?q=adresse">Itinéraire</a>
+    </div>
+  </div>
+</section>
+
+<section id="presentation">
+  <h2>Notre Salon</h2>
+  <p>
+    Barber Noir est un barbershop inspiré des meilleures adresses parisiennes,
+    alliant tradition, élégance et expertise moderne.
+  </p>
+</section>
+
+<section id="services">
+  <h2>Nos Forfaits</h2>
+  <div class="services">
+    <div class="service">
+      <h3>Barbe</h3>
+      <div class="price">20€</div>
+    </div>
+    <div class="service">
+      <h3>Cheveux</h3>
+      <div class="price">30€</div>
+    </div>
+    <div class="service">
+      <h3>Enfant</h3>
+      <div class="price">18€</div>
+    </div>
+    <div class="service">
+      <h3>Barbe & Cheveux</h3>
+      <div class="price">45€</div>
+    </div>
+  </div>
+</section>
+
+<section id="galerie">
+  <h2>Le Salon</h2>
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="https://images.pexels.com/photos/3993217/pexels-photo-3993217.jpeg" alt="Extérieur salon">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.pexels.com/photos/3993220/pexels-photo-3993220.jpeg" alt="Intérieur salon">
+    </div>
+  </div>
+</section>
+
+<section id="avis">
+  <h2>Avis Clients</h2>
+  <div class="reviews">
+    <div class="review">
+      Accueil impeccable et coupe parfaite
+      <div class="stars">★★★★★</div>
+    </div>
+    <div class="review">
+      Ambiance premium et très pro
+      <div class="stars">★★★★★</div>
+    </div>
+    <div class="review">
+      Le meilleur barbier du quartier
+      <div class="stars">★★★★★</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Nous Contacter</h2>
+  <div class="map">
+    <iframe src="https://maps.google.com/maps?q=adresse&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+  </div>
+  <form>
+    <input type="text" placeholder="Nom" required>
+    <input type="email" placeholder="Email" required>
+    <textarea rows="5" placeholder="Message"></textarea>
+    <button><span>Envoyer</span></button>
+  </form>
+</section>
+
+</body>
+</html>
